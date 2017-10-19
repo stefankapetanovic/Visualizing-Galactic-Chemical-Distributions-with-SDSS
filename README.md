@@ -1,1 +1,1 @@
-# Visualizing-Galatic-Chemical-Distributions-with-SDSS
+# Visualizing-Galactic-Chemical-Distributions-with-SDSS

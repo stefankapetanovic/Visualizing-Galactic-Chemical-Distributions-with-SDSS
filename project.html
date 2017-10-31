@@ -21,11 +21,11 @@
         <a href="#home" class="w3-bar-item w3-button w3-wide">Visualizing the Sloan Digital Sky Survey</a>
 
         <div class="w3-right w3-hide-small">
-            <a href="#about" class="w3-bar-item w3-button"> ABOUT</a>
-            <a href="#team" class="w3-bar-item w3-button"><i></i> TEAM</a>
-            <a href="#work" class="w3-bar-item w3-button"><i></i> WORK</a>
-            <a href="#pricing" class="w3-bar-item w3-button"><i></i> PRICING</a>
-            <a href="#contact" class="w3-bar-item w3-button"><i></i> CONTACT</a>
+            <a href="#about" class="w3-bar-item w3-button"> HOME</a>
+            <a href="#scatter" class="w3-bar-item w3-button"><i></i> SCATTER</a>
+            <a href="#about" class="w3-bar-item w3-button"><i></i> ABOUT</a>
+            <a href="#processbook" class="w3-bar-item w3-button"><i></i> PROCESS BOOK</a>
+            <a href="#demo" class="w3-bar-item w3-button"><i></i> DEMO</a>
         </div>
 
         <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
@@ -46,15 +46,35 @@
         <h2 class="w3-text-light-grey">Periodic Table</h2>
         <hr style="width:200px" class="w3-opacity">
     </div>
-    
+
     <div id = "tileChart" class = "view">
-    <div id="legend" class = "view"></div>
-    <div id = "tiles" class = "view"></div>
-</div>
+        <div id="legend" class = "view"></div>
+        <div id = "tiles" class = "view"></div>
+    </div>
 
     <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="scatter">
         <h2 class="w3-text-light-grey">Scatter Plot</h2>
         <hr style="width:200px" class="w3-opacity">
+    </div>
+
+    <div>
+
+        <svg width="200" height="200">
+            <rect x="0" y="0" width="200" height="200" class="frame"></rect>
+            <g transform="translate(0, 200) scale(1, -1)">
+                <circle cx="100" cy="91" r="5"></circle>
+                <circle cx="80" cy="81" r="5"></circle>
+                <circle cx="130" cy="87" r="5"></circle>
+                <circle cx="90" cy="88" r="5"></circle>
+                <circle cx="110" cy="93" r="5"></circle>
+                <circle cx="140" cy="81" r="5"></circle>
+                <circle cx="60" cy="61" r="5"></circle>
+                <circle cx="40" cy="31" r="5"></circle>
+                <circle cx="120" cy="91" r="5"></circle>
+                <circle cx="70" cy="73" r="5"></circle>
+                <circle cx="50" cy="47" r="5"></circle>
+            </g>
+        </svg>
     </div>
 
     <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
@@ -62,7 +82,7 @@
         <hr style="width:200px" class="w3-opacity">
         <p> Text about the project/information/data...
         </p>
-        </div>
+    </div>
 
     <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="demo">
         <h2 class="w3-text-light-grey">Demo Video</h2>
@@ -74,10 +94,10 @@
     </footer>
 
 </div>
-    
-    <script type="application/javascript" src="public/js/galaxy.js"></script>
-    <script type="application/javascript" src="public/js/periodictable.js"></script>
-    <script type="application/javascript" src="public/js/scatterplot.js"></script>
-    
+
+<script type="application/javascript" src="public/js/galaxy.js"></script>
+<script type="application/javascript" src="public/js/periodictable.js"></script>
+<script type="application/javascript" src="public/js/scatterplot.js"></script>
+
 </body>
 </html>

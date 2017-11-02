@@ -1,1 +1,31 @@
 
+
+body, h1,h2,h3,h4,h5,h6 {
+    font-family: "Montserrat", sans-serif
+}
+
+.w3-row-padding img {
+    margin-bottom: 12px
+}
+
+.tile {
+    stroke: #FFF;
+    stroke-width: 4;
+}
+
+.tilestext {
+    text-anchor:middle;
+    font-size: 24px;
+    fill: #565656;
+    stroke-width: 0.1px;
+}
+
+circle {
+    fill: steelblue;
+}
+
+.frame {
+    fill: none;
+    stroke: black;
+    stroke-width: 2px;
+}

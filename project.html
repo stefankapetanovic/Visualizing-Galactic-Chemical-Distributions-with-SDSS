@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html>
-<title>Visualizing the Sloan Digital Sky Survey</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="public/css/style.css"/>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<html lang="eng">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizing the Sloan Digital Sky Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="public/css/style.css"/>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script type="text/javascript" src="bower_components/d3-tip/index.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
 <body class="w3-black">
 <div class="w3-top">
@@ -35,12 +40,16 @@
         <hr style="width:200px" class="w3-opacity">
     </div>
 
+    <div id = "galaxyPlt" class = "view">
+        <div id="GPlot" class = "view"></div>
+    </div>
+
     <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="table">
         <h2 class="w3-text-light-grey">Periodic Table</h2>
         <hr style="width:200px" class="w3-opacity">
     </div>
 
-    <div id = "tileChart" class = "view">
+    <div id = "ptable" class = "view">
         <div id="legend" class = "view"></div>
         <div id = "tiles" class = "view"></div>
     </div>
@@ -48,25 +57,6 @@
     <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="scatter">
         <h2 class="w3-text-light-grey">Scatter Plot</h2>
         <hr style="width:200px" class="w3-opacity">
-    </div>
-
-    <div>
-        <svg width="200" height="200">
-            <rect x="0" y="0" width="200" height="200" class="frame"></rect>
-            <g transform="translate(0, 200) scale(1, -1)">
-                <circle cx="100" cy="91" r="5"></circle>
-                <circle cx="80" cy="81" r="5"></circle>
-                <circle cx="130" cy="87" r="5"></circle>
-                <circle cx="90" cy="88" r="5"></circle>
-                <circle cx="110" cy="93" r="5"></circle>
-                <circle cx="140" cy="81" r="5"></circle>
-                <circle cx="60" cy="61" r="5"></circle>
-                <circle cx="40" cy="31" r="5"></circle>
-                <circle cx="120" cy="91" r="5"></circle>
-                <circle cx="70" cy="73" r="5"></circle>
-                <circle cx="50" cy="47" r="5"></circle>
-            </g>
-        </svg>
     </div>
 
     <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
@@ -90,6 +80,7 @@
 <script type="application/javascript" src="public/js/galaxy.js"></script>
 <script type="application/javascript" src="public/js/ptable.js"></script>
 <script type="application/javascript" src="public/js/scatterplot.js"></script>
+<script type="application/javascript" src="public/js/script.js"></script>
 
 </body>
 </html>

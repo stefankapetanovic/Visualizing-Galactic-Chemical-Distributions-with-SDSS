@@ -1,10 +1,10 @@
 class Galaxy {
 
-    constructor (elements)
+    constructor (starData)
     {
 
-        //Creating elements data instance
-        this.elements = elements;
+        //Creating star data instance
+        this.starData = starData;
 
         //Selects the tiles
         let divTiles = d3.select("#GPlot").classed("content", true);
@@ -40,11 +40,81 @@ class Galaxy {
             .attr("fill", "url(#background)");
         ///////// Background: End ////////////////
 
+                // Color scale
+        this.ColorScale = d3.scaleLinear()
+            .domain([d3.min( this.starData.map(d => d.C) ), d3.max( this.starData.map(d => d.C) )])
+            .range(["red", "yellow"]);
+
     };
 
-    update()
+    create ()
     {
-        console.log("here")
+        //////////
+        // Plotting clustered data
+        //Used to shift position of stars
+        let shiftX = this.svgWidth/2.0;
+        let shiftY = this.svgHeight/1.445;
+        let dl = 0.49694 // defined in "ApogeeToCsv.py" and must be changed here
+        let maxN = d3.max(this.starData, function(d)
+            {
+                return parseInt(d.NumberOfStars);
+            });
+        let scale = dl/(2.0);
+        // galaxy scale
+        let galaxyScale = d3.scaleLinear()
+            .domain([-7.5, 7.5])
+            .range([-this.svgHeight/4.6, this.svgHeight/4.6]);
+        //let RgalaxyScale = d3.scale.log()
+        //    .domain([-7.5, 7.5])
+        //    .range([-this.svgHeight/4.6, this.svgHeight/4.6]);
+            
+        //Creates circles for cluster data
+        let circ = this.svg.selectAll("circle")
+            .data(this.starData);
+        let circNew = circ.enter().append("circle");
+        circ.exit().remove();
+        circ = circNew.merge(circ);
+
+        circ.attr("cx", d => 
+            {
+                return galaxyScale(d.xLocation)+shiftX;
+            })
+            .attr("cy", d => 
+            {
+                return galaxyScale(d.yLocation)+shiftY;
+            })
+            .attr("r", d => {
+                let maxRadius = galaxyScale(scale);
+                let Radius = galaxyScale(scale*d.NumberOfStars/maxN);
+                let ratio = 1/2.5;
+                if (Radius >= maxRadius*ratio)
+                {
+                    return galaxyScale(scale*d.NumberOfStars/maxN);
+                }
+                else
+                {
+                    return maxRadius*ratio;
+                }
+            })
+            .style("fill", d => 
+            {
+                return this.ColorScale(d.C);
+            });
+            
+        //////////
+    };
+
+    update(selection)
+    {
+        // Creates an array for possible selection of elements
+        let Columns = this.starData.columns
+        if (Columns.indexOf(selection.symbol) > -1)
+        {
+            this.svg.selectAll("circle")
+                .style("fill", d => { 
+                    return this.ColorScale(d[selection.symbol]);
+                });
+        }
     };
 
 }

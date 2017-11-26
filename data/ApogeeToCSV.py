@@ -64,7 +64,7 @@ dl = 2.0*l/N
 
 Columns = ['TEFF', 'LOGG', 'VMICRO', 'M_H', 'ALPHA_M', 'C_FE', 'CI_FE', 'N_FE', 'O_FE', 'NA_FE', 'MG_FE', 'AL_FE', 'SI_FE', 'P_FE', 'S_FE', 'K_FE', 'CA_FE', 'TI_FE', 'TIII_FE', 'V_FE', 'CR_FE', 'MN_FE', 'FE_H', 'CO_FE', 'NI_FE']
 
-ClusterKeys = ['TEFF', 'LOGG', 'VMICRO', 'M_H', 'ALPHA_M', 'C_FE', 'CI_FE', 'N_FE', 'O_FE', 'NA_FE', 'MG_FE', 'AL_FE', 'SI_FE', 'P_FE', 'S_FE', 'K_FE', 'CA_FE', 'TI_FE', 'TIII_FE', 'V_FE', 'CR_FE', 'MN_FE', 'FE_H', 'CO_FE', 'NI_FE', 'NumberOfStars', 'xLocation', 'yLocation']
+ClusterKeys = ['TEFF', 'LOGG', 'VMICRO', 'M_H', 'ALPHA_M', 'C', 'CI', 'N', 'O', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'K', 'Ca', 'Ti', 'TiII', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'NumberOfStars', 'xLocation', 'yLocation']
 
 table_cluster = Table(names=ClusterKeys)
 
@@ -91,4 +91,4 @@ for row in ClusterRows:
     table_cluster.add_row(row)
 
 # Save to csv file
-table_allStar.write('ClusterData.csv', format='ascii.csv', overwrite=True)
+table_cluster.write('ClusterData.csv', format='ascii.csv', overwrite=True)

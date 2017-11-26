@@ -1,10 +1,13 @@
 class PTable {
 
-    constructor (elements)
+    constructor (elements, GPlot, starData)
     {
+        //Initializes Galaxy.js
+        this.GPlot = GPlot;
 
         //Creating elements data instance
         this.elements = elements;
+        this.starData = starData;
 
         //Selects the tiles
         let divTiles = d3.select("#tiles").classed("content", true);
@@ -209,10 +212,23 @@ class PTable {
                     return "grey";
                 }
                 else { return "transparent"}
+            })
+            .classed("selected", d => {
+                if (d.symbol == "C")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             });
 
         // On click function
-        rect.on("click", function(d) {
+        let self = this;
+        rect.on("click", function(d) 
+            {
+                self.GPlot.update(d);
                 // Run function to update plot in the future
                 d3.selectAll("rect").classed("selected", false); //Un-selects previously selected tile
                 d3.select(this).classed("selected", true);

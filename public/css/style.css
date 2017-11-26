@@ -77,3 +77,16 @@ circle {
     border-radius: 10px;
     pointer-events: none;
 }
+
+/* Axis color */
+.axisWhite line{
+  stroke: white;
+}
+
+.axisWhite path{
+  stroke: white;
+}
+
+.axisWhite text{
+  fill: white;
+}  

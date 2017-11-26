@@ -15,7 +15,7 @@ class PTable {
         //Initializes the svg elements required for pTable chart
         this.margin = {top: 30, right: 20, bottom: 30, left: 50};
         let svgBounds = divTiles.node().getBoundingClientRect();
-        this.svgWidth = svgBounds.width - this.margin.left - this.margin.right;
+        this.svgWidth = svgBounds.width// - this.margin.left - this.margin.right;
         this.svgHeight = this.svgWidth*0.7;
 
         //Adds svg to the div

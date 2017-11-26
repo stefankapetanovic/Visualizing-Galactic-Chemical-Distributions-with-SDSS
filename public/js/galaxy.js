@@ -6,17 +6,17 @@ class Galaxy {
         //Creating star data instance
         this.starData = starData;
 
-        //Selects the tiles
-        let divTiles = d3.select("#GPlot").classed("content", true);
+        //Selects the div
+        let div = d3.select("#GPlot").classed("content", true);
 
         //Initializes the svg elements required for pTable chart
         this.margin = {top: 30, right: 20, bottom: 30, left: 50};
-        let svgBounds = divTiles.node().getBoundingClientRect();
+        let svgBounds = div.node().getBoundingClientRect();
         this.svgWidth = svgBounds.width - this.margin.left - this.margin.right;
         this.svgHeight = this.svgWidth*0.7;
 
         //Adds svg to the div
-        this.svg = divTiles.append("svg")
+        this.svg = div.append("svg")
             .attr("width", this.svgWidth)
             .attr("height", this.svgHeight)
             .attr("transform", "translate(0, 0)");
@@ -61,7 +61,7 @@ class Galaxy {
             .range([-this.svgHeight/5.2, this.svgHeight/5.2]);
         // Color scale
         let ColorScale = d3.scaleLinear()
-            .domain([d3.min( this.starData.map(d => d.C) ), d3.max( this.starData.map(d => d.C) )])
+            .domain([d3.min(this.starData, d => +d.C), d3.max(this.starData, d => +d.C)])
             .range(["yellow", "red"]);
         //let RgalaxyScale = d3.scale.log()
         //    .domain([-7.5, 7.5])
@@ -76,11 +76,11 @@ class Galaxy {
 
         circ.attr("cx", d => 
             {
-                return galaxyScale(d.xLocation)+shiftX;
+                return galaxyScale(+d.xLocation)+shiftX;
             })
             .attr("cy", d => 
             {
-                return galaxyScale(d.yLocation)+shiftY;
+                return galaxyScale(+d.yLocation)+shiftY;
             })
             .attr("r", d => {
                 let maxRadius = galaxyScale(scale);
@@ -97,7 +97,7 @@ class Galaxy {
             })
             .style("fill", d => 
             {
-                return ColorScale(d.C);
+                return ColorScale(+d.C);
             });
             
         //////////
@@ -110,13 +110,13 @@ class Galaxy {
         if (Columns.indexOf(selection.symbol) > -1)
         {
             // Color scale
-            let ColorScale = d3.scaleLinear()
-                .domain([d3.min( this.starData.map(d => d[selection.symbol]) ), d3.max( this.starData.map(d => d[selection.symbol]) )])
-                .range(["yellow", "red"]);
+        let ColorScale = d3.scaleLinear()
+            .domain([d3.min(this.starData, d => +d[selection.symbol]), d3.max(this.starData, d => +d[selection.symbol])])
+            .range(["yellow", "red"]);
             
             this.svg.selectAll("circle")
                 .style("fill", d => { 
-                    return ColorScale(d[selection.symbol]);
+                    return ColorScale(+d[selection.symbol]);
                 });
         }
     };

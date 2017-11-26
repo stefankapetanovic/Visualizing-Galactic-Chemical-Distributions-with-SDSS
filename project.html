@@ -58,6 +58,107 @@
         <h2 class="w3-text-light-grey">Scatter Plot</h2>
         <hr style="width:200px" class="w3-opacity">
     </div>
+    
+    <div id="scatterPlt" class = "view">
+        <div id="Xselector">
+            <label>X-Axis:</label>
+            <select id="xselect" onchange="chooseSelection()">
+                <option selected value="TEFF">Teff</option>
+                <option value="LOGG">Log(g)</option>
+                <option value="VMICRO">Micro Vel</option>
+                <option value="M_H">Metallicity</option>
+                <option value="ALPHA_M">Alpha Elements</option>
+                <option value="xLocation">x Position</option>
+                <option value="yLocation">y Position</option>
+                <option value="C">Carbon</option>
+                <option value="CI">CarbonI</option>
+                <option value="N">Nitrogen</option>
+                <option value="O">Oxygen</option>
+                <option value="Na">Sodium</option>
+                <option value="Mg">Magnesium</option>
+                <option value="Al">Aluminum</option>
+                <option value="Si">Silicon</option>
+                <option value="P">Phosphorus</option>
+                <option value="S">Sulfer</option>
+                <option value="K">Potassium</option>
+                <option value="Ca">Calcium</option>
+                <option value="Ti">Titanium</option>
+                <option value="TiII">TitaniumII</option>
+                <option value="V">Vanadium</option>
+                <option value="Cr">Chromium</option>
+                <option value="Mn">Manganese</option>
+                <option value="Fe">Iron</option>
+                <option value="Co">Cobalt</option>
+                <option value="Ni">Nickel</option>
+            </select>
+        </div>
+        <div id="Yselector">
+            <label>Y-Axis:</label>
+            <select id="yselect" onchange="chooseSelection()">
+                <option selected value="LOGG">Log(g)</option>
+                <option value="TEFF">Teff</option>
+                <option value="VMICRO">Micro Vel</option>
+                <option value="M_H">Metallicity</option>
+                <option value="ALPHA_M">Alpha Elements</option>
+                <option value="xLocation">x Position</option>
+                <option value="yLocation">y Position</option>
+                <option value="C">Carbon</option>
+                <option value="CI">CarbonI</option>
+                <option value="N">Nitrogen</option>
+                <option value="O">Oxygen</option>
+                <option value="Na">Sodium</option>
+                <option value="Mg">Magnesium</option>
+                <option value="Al">Aluminum</option>
+                <option value="Si">Silicon</option>
+                <option value="P">Phosphorus</option>
+                <option value="S">Sulfer</option>
+                <option value="K">Potassium</option>
+                <option value="Ca">Calcium</option>
+                <option value="Ti">Titanium</option>
+                <option value="TiII">TitaniumII</option>
+                <option value="V">Vanadium</option>
+                <option value="Cr">Chromium</option>
+                <option value="Mn">Manganese</option>
+                <option value="Fe">Iron</option>
+                <option value="Co">Cobalt</option>
+                <option value="Ni">Nickel</option>
+            </select>
+        </div>
+        <div id="Cselector">
+            <label>Color:</label>
+            <select id="cselect" onchange="chooseSelection()">
+                <option selected value="M_H">Metallicity</option>
+                <option value="TEFF">Teff</option>
+                <option value="LOGG">Log(g)</option>
+                <option value="VMICRO">Micro Vel</option>
+                <option value="ALPHA_M">Alpha Elements</option>
+                <option value="xLocation">x Position</option>
+                <option value="yLocation">y Position</option>
+                <option value="C">Carbon</option>
+                <option value="CI">CarbonI</option>
+                <option value="N">Nitrogen</option>
+                <option value="O">Oxygen</option>
+                <option value="Na">Sodium</option>
+                <option value="Mg">Magnesium</option>
+                <option value="Al">Aluminum</option>
+                <option value="Si">Silicon</option>
+                <option value="P">Phosphorus</option>
+                <option value="S">Sulfer</option>
+                <option value="K">Potassium</option>
+                <option value="Ca">Calcium</option>
+                <option value="Ti">Titanium</option>
+                <option value="TiII">TitaniumII</option>
+                <option value="V">Vanadium</option>
+                <option value="Cr">Chromium</option>
+                <option value="Mn">Manganese</option>
+                <option value="Fe">Iron</option>
+                <option value="Co">Cobalt</option>
+                <option value="Ni">Nickel</option>
+            </select>
+        </div>
+    <div id="SPlot" class = "view"></div>
+
+    </div>
 
     <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
         <h2 class="w3-text-light-grey">About</h2>

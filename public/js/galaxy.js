@@ -40,11 +40,6 @@ class Galaxy {
             .attr("fill", "url(#background)");
         ///////// Background: End ////////////////
 
-                // Color scale
-        this.ColorScale = d3.scaleLinear()
-            .domain([d3.min( this.starData.map(d => d.C) ), d3.max( this.starData.map(d => d.C) )])
-            .range(["red", "yellow"]);
-
     };
 
     create ()
@@ -63,7 +58,11 @@ class Galaxy {
         // galaxy scale
         let galaxyScale = d3.scaleLinear()
             .domain([-7.5, 7.5])
-            .range([-this.svgHeight/4.6, this.svgHeight/4.6]);
+            .range([-this.svgHeight/5.2, this.svgHeight/5.2]);
+        // Color scale
+        let ColorScale = d3.scaleLinear()
+            .domain([d3.min( this.starData.map(d => d.C) ), d3.max( this.starData.map(d => d.C) )])
+            .range(["yellow", "red"]);
         //let RgalaxyScale = d3.scale.log()
         //    .domain([-7.5, 7.5])
         //    .range([-this.svgHeight/4.6, this.svgHeight/4.6]);
@@ -98,7 +97,7 @@ class Galaxy {
             })
             .style("fill", d => 
             {
-                return this.ColorScale(d.C);
+                return ColorScale(d.C);
             });
             
         //////////
@@ -110,9 +109,14 @@ class Galaxy {
         let Columns = this.starData.columns
         if (Columns.indexOf(selection.symbol) > -1)
         {
+            // Color scale
+            let ColorScale = d3.scaleLinear()
+                .domain([d3.min( this.starData.map(d => d[selection.symbol]) ), d3.max( this.starData.map(d => d[selection.symbol]) )])
+                .range(["yellow", "red"]);
+            
             this.svg.selectAll("circle")
                 .style("fill", d => { 
-                    return this.ColorScale(d[selection.symbol]);
+                    return ColorScale(d[selection.symbol]);
                 });
         }
     };

@@ -33,12 +33,12 @@ class PTable {
      * @return text HTML content for tool tip
      */
     tooltip_render(tooltip_data) {
-        let text = "<h2 class = atomicName>" + tooltip_data.Name + "</h2>"; //Change class here future
-        text +=  "Atomic Something: " + tooltip_data.Something; //future will probably be contribution from s or r process
+        let text = "<h2 class = atomicName>" + tooltip_data.Name + " (" + tooltip_data.symbol + ") </h2>"; //Change class here future
+        text +=  "Atomic mass: " + tooltip_data.atomicMass + "(au)";
         text += "<ul>"
         tooltip_data.info.forEach((row)=>{
             //if (row.votecount == "" || row.party == "" || row.nominee == "") {}
-            text += "<li class = " + row.thing1 + ">" + row.thing2 + ":\t\t" + "</li>"
+            text += "<li class = " + row.type + ">" + row.entry + ":\t\t" + "</li>"
         });
         text += "</ul>";
 
@@ -73,7 +73,7 @@ class PTable {
             .enter()
             .append("rect")
             .attr("class", "bbf")
-            .attr("fill", "blue") //future
+            .classed("BigBangFusion", true)
             .attr("width", rectWidth)
             .attr("height", d => {
                 return rectHeight*d.BigBangFusion;
@@ -93,7 +93,7 @@ class PTable {
             .enter()
             .append("rect")
             .attr("class", "crf")
-            .attr("fill", "pink") //future
+            .classed("CosmicRayFission", true)
             .attr("width", rectWidth)
             .attr("height", d => {
                 return rectHeight*d.CosmicRayFission;
@@ -113,7 +113,7 @@ class PTable {
             .enter()
             .append("rect")
             .attr("class", "mns")
-            .attr("fill", "orange") //future
+            .classed("MergingNeutronStars", true)
             .attr("width", rectWidth)
             .attr("height", d => {
                 return rectHeight*d.MergingNeutronStars;
@@ -133,7 +133,7 @@ class PTable {
             .enter()
             .append("rect")
             .attr("class", "ems")
-            .attr("fill", "green") //future
+            .classed("ExplodingMassiveStars", true)
             .attr("width", rectWidth)
             .attr("height", d => {
                 return rectHeight*d.ExplodingMassiveStars;
@@ -153,7 +153,7 @@ class PTable {
             .enter()
             .append("rect")
             .attr("class", "dlms")
-            .attr("fill", "yellow") //future
+            .classed("DyingLowMassStars", true)
             .attr("width", rectWidth)
             .attr("height", d => {
                 return rectHeight*d.DyingLowMassStars;
@@ -173,7 +173,7 @@ class PTable {
             .enter()
             .append("rect")
             .attr("class", "ewd")
-            .attr("fill", "steelblue") //future
+            .classed("ExplodingWhiteDwarfs", true)
             .attr("width", rectWidth)
             .attr("height", d => {
                 return rectHeight*d.ExplodingWhiteDwarfs;
@@ -196,6 +196,7 @@ class PTable {
         rect = rectNew.merge(rect);
 
         //Rectangle attributes
+        let selectableElements = ["C", "N", "O", "Na", "Mg", "Al", "Si", "P", "S", "K", "Ca", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni"];
         rect.attr("width", rectWidth)
             .attr("height", rectHeight)
             .attr("x", d => {
@@ -206,7 +207,18 @@ class PTable {
             })
             //.attr("fill", "white")
             .classed("rect", true)
-            .classed("tile", true)
+            .style("stroke", d =>
+            {
+                if (selectableElements.indexOf(d.symbol) > -1)
+                {
+                    return "green";
+                }
+                else
+                {
+                    return "#eee"
+                }
+            })
+            .style("stroke-width", "3")
             .attr("fill", d => {
                 if (d.CurrentPosition == 0) {
                     return "grey";
@@ -251,11 +263,15 @@ class PTable {
                     // populate data in the following format
                     let tooltip_data = {
                         "Name": d.Name,
-                        "Something": d.State_Winner, //future need to change something
+                        "symbol": d.symbol,
+                        "atomicMass": d.atomicMass, //future need to change something
                         "info":[
-                        {"thing1": d.atomicMass,"thing2": d.electronicConfiguration},
-                        {"thing1": d.atomicMass,"thing2": d.electronicConfiguration},
-                        {"thing1": d.atomicMass,"thing2": d.electronicConfiguration}
+                        {"entry": "Big Bang Fusion: "+(d.BigBangFusion*100)+"%", "type": "BigBangFusion"},
+                        {"entry": "Cosmic Ray Fission: "+(d.CosmicRayFission*100)+"%", "type": "CosmicRayFission"},
+                        {"entry": "Merging Neutron Stars: "+(d.MergingNeutronStars*100)+"%", "type": "MergingNeutronStars"},
+                        {"entry": "Exploding Massive Stars: "+(d.ExplodingMassiveStars*100)+"%", "type": "ExplodingMassiveStars"},
+                        {"entry": "Dying Low Mass Stars: "+(d.DyingLowMassStars*100)+"%", "type": "DyingLowMassStars"},
+                        {"entry": "Exploding White Dwarfs: "+(d.ExplodingWhiteDwarfs*100)+"%", "type": "ExplodingWhiteDwarfs"}
                         ]
                     }
                     //pass this as an argument to the tooltip_render function then,

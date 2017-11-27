@@ -80,7 +80,7 @@ class Galaxy {
             })
             .attr("cy", d => 
             {
-                return galaxyScale(+d.yLocation)+shiftY;
+                return galaxyScale(+d.yLocation*(-1))+shiftY;
             })
             .attr("r", d => {
                 let maxRadius = galaxyScale(scale);

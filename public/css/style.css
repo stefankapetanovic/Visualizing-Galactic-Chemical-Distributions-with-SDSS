@@ -31,10 +31,15 @@ circle {
 }
 */
 
-.tile {
+/*.tile {
     stroke: #eee;
     stroke-width: 5;
 }
+
+.tileSelection {
+    stroke: green;
+    stroke-width: 5;
+}*/
 
 /* Ptable classes */
 .atomicNumber{
@@ -77,6 +82,38 @@ circle {
     border-radius: 10px;
     pointer-events: none;
 }
+
+/* Periodic table colors: start*/
+.BigBangFusion {
+    color: blue;
+    fill: blue;
+}
+
+.CosmicRayFission {
+    color: pink;
+    fill: pink;
+}
+
+.MergingNeutronStars {
+    color: orange;
+    fill: orange;
+}
+
+.ExplodingMassiveStars {
+    color: green;
+    fill: green;
+}
+
+.DyingLowMassStars {
+    color: yellow;
+    fill: yellow;
+}
+
+.ExplodingWhiteDwarfs {
+    color: steelblue;
+    fill: steelblue;
+}
+/* Periodic table colors: end*/
 
 /* Axis color */
 .axisWhite line{

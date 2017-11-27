@@ -115,6 +115,7 @@ class Galaxy {
             .range(["yellow", "red"]);
             
             this.svg.selectAll("circle")
+                .transition().duration(1000)
                 .style("fill", d => { 
                     return ColorScale(+d[selection.symbol]);
                 });

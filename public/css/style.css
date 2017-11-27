@@ -89,4 +89,11 @@ circle {
 
 .axisWhite text{
   fill: white;
-}  
+}
+
+/* Brush selection */
+.unselected {
+  fill: #000;
+  fill-opacity: .125;
+  stroke: #fff;
+}

@@ -61,8 +61,6 @@ class ScatterPlot
             .domain([cmin, cmax])
             .range(["yellow", "red"])
 
-        console.log(parseFloat(xmax), xmin)
-        console.log(xScale(xmax), xScale(xmin))
         //x-axis setup
         let xAxis = d3.axisBottom().scale(xScale).tickFormat(d3.format(".2f"));
         d3.select("#xAxis")
@@ -104,6 +102,61 @@ class ScatterPlot
             {
                 return cScale(+d[cSelected]);
             });
+
+        //////
+        // Brush selection
+        this.svg.select("#brush").remove()
+        this.svg.append("g")
+            .attr("id", "brush")
+            .call(d3.brush().extent([[xbuffer, 0], [this.svgWidth - xbuffer, this.svgHeight - ybuffer]]).on("brush", brushed).on("end", brushended));
+
+        let self = this;
+        function brushed() 
+        {
+            let s = d3.event.selection,
+                x0 = s[0][0],
+                y0 = s[0][1],
+                dx = s[1][0] - x0,
+                dy = s[1][1] - y0;
+
+            self.svg.selectAll('circle')
+                .classed("unselected", d => 
+                {
+                    if (xScale(d[xSelected]) >= x0 && xScale(d[xSelected]) <= x0 + dx && yScale(d[ySelected]) >= y0 && yScale(d[ySelected]) <= y0 + dy)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                });
+                
+            d3.select("#GPlot").selectAll('circle')
+                .classed("unselected", d => 
+                {
+                    if (xScale(d[xSelected]) >= x0 && xScale(d[xSelected]) <= x0 + dx && yScale(d[ySelected]) >= y0 && yScale(d[ySelected]) <= y0 + dy)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                });
+        };
+
+        function brushended() 
+        {
+            if (!d3.event.selection)
+            {
+                self.svg.selectAll('circle')
+                .classed("unselected", false);
+
+                d3.select("#GPlot").selectAll('circle')
+                .classed("unselected", false);
+            }
+        }
 
     }
 

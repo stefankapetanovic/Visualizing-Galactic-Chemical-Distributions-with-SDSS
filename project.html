@@ -16,14 +16,11 @@
 <body class="w3-black">
 <div class="w3-top">
     <div class="w3-bar w3-black w3-card" id="myNavbar">
-        <a href="#home" class="w3-bar-item w3-button w3-wide">Visualizing the Sloan Digital Sky Survey</a>
+        <a href="#main" class="w3-bar-item w3-button w3-wide">Visualizing the Sloan Digital Sky Survey</a>
         <div class="w3-right w3-hide-small">
-            <a href="#galaxy" class="w3-bar-item w3-button"> GALAXY</a>
-            <a href="#ptable" class="w3-bar-item w3-button"> PERIODIC TABLE</a>
-            <a href="#scatter" class="w3-bar-item w3-button"><i></i> SCATTER</a>
-            <a href="#about" class="w3-bar-item w3-button"><i></i> ABOUT</a>
-            <a href="#demo" class="w3-bar-item w3-button"><i></i> DEMO</a>
-            <a href="6630 Process Book.pdf" class="w3-bar-item w3-button"><i></i> PROCESS BOOK</a>
+            <a href="#about" class="w3-bar-item w3-button"><i></i>ABOUT</a>
+            <a href="#demo" class="w3-bar-item w3-button"><i></i>DEMO</a>
+            <a href="6630 Process Book.pdf" class="w3-bar-item w3-button"><i></i>PROCESS BOOK</a>
         </div>
 
         <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
@@ -35,34 +32,19 @@
 
 <div class="w3-padding-large" id="main">
 
-    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="galaxy">
-        <h2 class="w3-text-light-grey">Galactic Visual</h2>
-        <hr style="width:200px" class="w3-opacity">
-    </div>
-
-    <div id = "galaxyPlt" class = "view">
+    <div id = "galaxyPlt" class = "view w3-twothird w3-display-right">
         <div id="GPlot" class = "view"></div>
     </div>
 
-    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="ptable">
-        <h2 class="w3-text-light-grey">Periodic Table</h2>
-        <hr style="width:200px" class="w3-opacity">
-    </div>
-
-    <div id = "ptable" class = "view">
+    <div id = "ptable" class = "view w3-third w3-display-topleft" style="margin-top: 50px">
         <div id="legend" class = "view"></div>
         <div id = "tiles" class = "view"></div>
     </div>
 
-    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="scatter">
-        <h2 class="w3-text-light-grey">Scatter Plot</h2>
-        <hr style="width:200px" class="w3-opacity">
-    </div>
-
-    <div id="scatterPlt" class = "view">
-        <div id="Xselector">
+    <div id="scatterPlt" class = "view w3-third w3-display-bottomleft">
+        <div class="w3-third" id="Xselector">
             <label>X-Axis:</label>
-            <select id="xselect" onchange="chooseSelection()">
+            <select class="w3-threequarter" id="xselect" onchange="chooseSelection()">
                 <option value="TEFF">Teff</option>
                 <option value="LOGG">Log(g)</option>
                 <option value="VMICRO">Micro Vel</option>
@@ -92,9 +74,9 @@
                 <option value="Ni">Nickel</option>
             </select>
         </div>
-        <div id="Yselector">
+        <div class="w3-third" id="Yselector">
             <label>Y-Axis:</label>
-            <select id="yselect" onchange="chooseSelection()">
+            <select class="w3-threequarter" id="yselect" onchange="chooseSelection()">
                 <option value="TEFF">Teff</option>
                 <option value="LOGG">Log(g)</option>
                 <option value="VMICRO">Micro Vel</option>
@@ -124,9 +106,9 @@
                 <option value="Ni">Nickel</option>
             </select>
         </div>
-        <div id="Cselector">
+        <div class="w3-third" id="Cselector">
             <label>Color:</label>
-            <select id="cselect" onchange="chooseSelection()">
+            <select class="w3-threequarter"" id="cselect" onchange="chooseSelection()">
                 <option value="TEFF">Teff</option>
                 <option value="LOGG">Log(g)</option>
                 <option value="VMICRO">Micro Vel</option>
@@ -160,8 +142,8 @@
 
     </div>
 
-    <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-        <h2 class="w3-text-light-grey">About</h2>
+    <div class="w3-content w3-justify w3-text-grey" style="margin-top: 800px">
+        <h2 id="about" class="w3-text-light-grey">About</h2>
         <hr style="width:200px" class="w3-opacity">
         <p></p>
         <h1>Galactic</h1>
@@ -178,8 +160,9 @@
         <hr style="width:200px" class="w3-opacity">
     </div>
 
-    <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <footer class="w3-padding-16 w3-text-black w3-xlarge w3-opactiy w3-center w3-dark-grey">
         <p class="w3-medium">Made by Stefan Kapetanovic and Anthony Garica</p>
+        <p class="w3-medium">2017 Visualizing the Sloan Digital Sky Survey. All Rights Reserved. </p>
     </footer>
 
 </div>

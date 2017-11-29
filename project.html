@@ -32,16 +32,15 @@
 
 <div class="w3-padding-large" id="main">
 
-    <div id = "galaxyPlt" class = "view w3-twothird w3-display-right">
+    <div id = "galaxyPlt" class = "view w3-display-right galaxyTile">
         <div id="GPlot" class = "view"></div>
     </div>
 
-    <div id = "ptable" class = "view w3-third w3-display-topleft" style="margin-top: 50px">
-        <div id="legend" class = "view"></div>
+    <div id = "ptable" class = "PtableTile">
         <div id = "tiles" class = "view"></div>
     </div>
 
-    <div id="scatterPlt" class = "view w3-third w3-display-bottomleft">
+    <div id="scatterPlt" class = "scatterTile">
         <div class="w3-third" id="Xselector">
             <label>X-Axis:</label>
             <select class="w3-threequarter" id="xselect" onchange="chooseSelection()">
@@ -142,7 +141,7 @@
 
     </div>
 
-    <div class="w3-content w3-justify w3-text-grey" style="margin-top: 800px">
+    <div class="w3-content w3-justify w3-text-grey" style="margin-top: 100px">
         <h2 id="about" class="w3-text-light-grey">About</h2>
         <hr style="width:200px" class="w3-opacity">
         <p></p>

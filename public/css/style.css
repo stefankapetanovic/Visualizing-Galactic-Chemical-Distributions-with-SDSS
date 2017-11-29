@@ -15,6 +15,21 @@ body, h1,h2,h3,h4,h5,h6 {
     stroke-width: 0.1px;
 }
 
+.galaxyTile {
+    margin-top: 0px;
+    margin-right: 4%;
+}
+
+.PtableTile {
+    margin-top: 30px;
+    margin-left: 1.5%;
+}
+
+.scatterTile {
+    width: 480px;
+    margin-left: 1.5%
+}
+
 circle {
     fill: steelblue;
 }
@@ -25,11 +40,10 @@ circle {
     stroke-width: 2px;
 }
 
-/*.content {
+.content {
     display: inline-block;
-    width: 70%;
+    width: 50%;
 }
-*/
 
 /*.tile {
     stroke: #eee;
@@ -85,8 +99,8 @@ circle {
 
 /* Periodic table colors: start*/
 .BigBangFusion {
-    color: blue;
-    fill: blue;
+    color: #828DAA;
+    fill: #828DAA;
 }
 
 .CosmicRayFission {
@@ -95,18 +109,18 @@ circle {
 }
 
 .MergingNeutronStars {
-    color: orange;
-    fill: orange;
+    color: #DACAAE;
+    fill: #DACAAE;
 }
 
 .ExplodingMassiveStars {
-    color: green;
-    fill: green;
+    color: #0ae4d3;
+    fill: #0ae4d3;
 }
 
 .DyingLowMassStars {
-    color: black;
-    fill: yellow;
+    color: #a21201;
+    fill: #a21201;
 }
 
 .ExplodingWhiteDwarfs {

@@ -8,13 +8,13 @@ class ScatterPlot
         this.starData = starData;
 
         //Selects the div
-        let div = d3.select("#SPlot").classed("content", true);
+        let div = d3.select("#scatterPlt")//.classed("content", true);
 
         //Initializes the svg elements required for pTable chart
         this.margin = {top: 30, right: 20, bottom: 30, left: 50};
         let svgBounds = div.node().getBoundingClientRect();
-        this.svgWidth = svgBounds.width - this.margin.left - this.margin.right;
-        this.svgHeight = this.svgWidth*0.7;
+        this.svgWidth = 480 //svgBounds.width// - this.margin.left - this.margin.right;
+        this.svgHeight = 270;
 
         //Adds svg to the div
         this.svg = div.append("svg")
@@ -38,7 +38,7 @@ class ScatterPlot
         let xbuffer = 50;
         let ybuffer = 16;
         let pad = 0.1;
-        let r = 3.5
+        let r = 2.5
 
         let d_time = 1000;
 
@@ -52,13 +52,13 @@ class ScatterPlot
         //X scale
         let xScale = d3.scaleLinear()
             .domain([xmin, xmax])
-            .range([r+xbuffer, this.svgWidth - xbuffer - r]);
+            .range([r+xbuffer, this.svgWidth - r]);
         //Y scale
         let yScale = d3.scaleLinear()
             .domain([ymax, ymin])
             .range([r, this.svgHeight - ybuffer - r]);
         let cScale = d3.scaleLinear()
-            .domain([cmin, cmax])
+            .domain([0.3*cmin, 0.3*cmax])
             .range(["yellow", "red"])
 
         //x-axis setup
@@ -108,7 +108,7 @@ class ScatterPlot
         this.svg.select("#brush").remove()
         this.svg.append("g")
             .attr("id", "brush")
-            .call(d3.brush().extent([[xbuffer, 0], [this.svgWidth - xbuffer, this.svgHeight - ybuffer]]).on("brush", brushed).on("end", brushended));
+            .call(d3.brush().extent([[xbuffer, 0], [this.svgWidth, this.svgHeight - ybuffer]]).on("brush", brushed).on("end", brushended));
 
         let self = this;
         function brushed() 

@@ -12,8 +12,8 @@ class Galaxy {
         //Initializes the svg elements required for pTable chart
         this.margin = {top: 30, right: 20, bottom: 30, left: 50};
         let svgBounds = div.node().getBoundingClientRect();
-        this.svgWidth = svgBounds.width - this.margin.left - this.margin.right;
-        this.svgHeight = this.svgWidth*0.7;
+        this.svgWidth = 550 //svgBounds.width - this.margin.left - this.margin.right;
+        this.svgHeight = this.svgWidth;
 
         //Adds svg to the div
         this.svg = div.append("svg")
@@ -61,7 +61,7 @@ class Galaxy {
             .range([-this.svgHeight/5.2, this.svgHeight/5.2]);
         // Color scale
         let ColorScale = d3.scaleLinear()
-            .domain([d3.min(this.starData, d => +d.C), d3.max(this.starData, d => +d.C)])
+            .domain([0.3*d3.min(this.starData, d => +d.C), 0.3*d3.max(this.starData, d => +d.C)])
             .range(["yellow", "red"]);
         //let RgalaxyScale = d3.scale.log()
         //    .domain([-7.5, 7.5])
@@ -111,7 +111,7 @@ class Galaxy {
         {
             // Color scale
         let ColorScale = d3.scaleLinear()
-            .domain([d3.min(this.starData, d => +d[selection.symbol]), d3.max(this.starData, d => +d[selection.symbol])])
+            .domain([0.3*d3.min(this.starData, d => +d[selection.symbol]), 0.3*d3.max(this.starData, d => +d[selection.symbol])])
             .range(["yellow", "red"]);
             
             this.svg.selectAll("circle")

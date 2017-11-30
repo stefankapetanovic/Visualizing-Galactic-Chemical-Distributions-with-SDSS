@@ -39,8 +39,25 @@ class Galaxy {
             .attr("height", this.svgHeight)
             .attr("fill", "url(#background)");
         ///////// Background: End ////////////////
-
     };
+
+///////////////////// Tool Tip Function
+    /**
+     * Renders the HTML content for tool tip.
+     *
+     * @param tooltip_data information that needs to be populated in the tool tip
+     * @return text HTML content for tool tip
+     */
+    tooltip_render(tooltip_data)
+    {
+        let text = "<h2 class = atomicName> Number of Star in Bin:  " + tooltip_data.Nstars + "</h2>";
+        text += "<h2 class = atomicName> Average Temperature:  " + tooltip_data.AverageT + "(K) </h2>";
+        text += "<h2 class = atomicName> Radius from the Sun:  " + tooltip_data.rS + "(ly) </h2>";
+        text += "<h2 class = atomicName> Average Chemical Enrichment:  " + tooltip_data.AverageCE + "(dexs) </h2>";
+
+        return text;
+    };
+//////////////////////
 
     create ()
     {
@@ -61,7 +78,7 @@ class Galaxy {
             .range([-this.svgHeight/5.2, this.svgHeight/5.2]);
         // Color scale
         let ColorScale = d3.scaleLinear()
-            .domain([0.3*d3.min(this.starData, d => +d.C), 0.3*d3.max(this.starData, d => +d.C)])
+            .domain([d3.min(this.starData, d => +d.C), d3.max(this.starData, d => +d.C)])
             .range(["yellow", "red"]);
         //let RgalaxyScale = d3.scale.log()
         //    .domain([-7.5, 7.5])
@@ -85,7 +102,7 @@ class Galaxy {
             .attr("r", d => {
                 let maxRadius = galaxyScale(scale);
                 let Radius = galaxyScale(scale*d.NumberOfStars/maxN);
-                let ratio = 1/2.5;
+                let ratio = 0.75;
                 if (Radius >= maxRadius*ratio)
                 {
                     return galaxyScale(scale*d.NumberOfStars/maxN);
@@ -99,8 +116,38 @@ class Galaxy {
             {
                 return ColorScale(+d.C);
             });
-            
+
         //////////
+        
+        ///////////////////////////////
+//// PTable ToolTip :Start ////
+///////////////////////////////
+        //for reference:https://github.com/Caged/d3-tip
+        //Use this tool tip element to handle any hover over the chart
+            let tip = d3.tip().attr('class', 'd3-tip')
+                .direction('nw')
+                .offset(function() {
+                    return [-275,0];
+                })
+                .html((d)=>{
+                    // populate data in the following format
+                    let tooltip_data = 
+                    {
+                        "rS": Math.sqrt(parseFloat(d.xLocation)*3261.56*parseFloat(d.xLocation)*3261.56+parseFloat(d.yLocation)*3261.56*parseFloat(d.yLocation)*3261.56).toFixed(0),
+                        "Nstars": parseFloat(d.NumberOfStars).toFixed(0),
+                        "AverageT": parseFloat(d.TEFF).toFixed(0),
+                        "AverageCE": parseFloat(d.M_H).toFixed(3)
+                    }
+                    //pass this as an argument to the tooltip_render function then,
+                    //return the HTML content returned from that method.
+
+                    return this.tooltip_render(tooltip_data);
+                });
+
+        //tip for element rectangels
+        circ.call(tip);
+        circ.on("mouseover", tip.show)
+            .on("mouseout", tip.hide);
     };
 
     update(selection)

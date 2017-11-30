@@ -111,7 +111,7 @@ class Galaxy {
         {
             // Color scale
         let ColorScale = d3.scaleLinear()
-            .domain([0.3*d3.min(this.starData, d => +d[selection.symbol]), 0.3*d3.max(this.starData, d => +d[selection.symbol])])
+            .domain([d3.min(this.starData, d => +d[selection.symbol]), d3.max(this.starData, d => +d[selection.symbol])])
             .range(["yellow", "red"]);
             
             this.svg.selectAll("circle")

@@ -83,7 +83,7 @@ class Galaxy {
         //let RgalaxyScale = d3.scale.log()
         //    .domain([-7.5, 7.5])
         //    .range([-this.svgHeight/4.6, this.svgHeight/4.6]);
-            
+
         //Creates circles for cluster data
         let circ = this.svg.selectAll("circle")
             .data(this.starData);
@@ -91,11 +91,11 @@ class Galaxy {
         circ.exit().remove();
         circ = circNew.merge(circ);
 
-        circ.attr("cx", d => 
+        circ.attr("cx", d =>
             {
                 return galaxyScale(+d.xLocation)+shiftX;
             })
-            .attr("cy", d => 
+            .attr("cy", d =>
             {
                 return galaxyScale(+d.yLocation*(-1))+shiftY;
             })
@@ -112,13 +112,13 @@ class Galaxy {
                     return maxRadius*ratio;
                 }
             })
-            .style("fill", d => 
+            .style("fill", d =>
             {
                 return ColorScale(+d.C);
             });
 
         //////////
-        
+
         ///////////////////////////////
 //// PTable ToolTip :Start ////
 ///////////////////////////////
@@ -127,11 +127,11 @@ class Galaxy {
             let tip = d3.tip().attr('class', 'd3-tip')
                 .direction('nw')
                 .offset(function() {
-                    return [-298,0];
+                    return [0,0];
                 })
                 .html((d)=>{
                     // populate data in the following format
-                    let tooltip_data = 
+                    let tooltip_data =
                     {
                         "rS": Math.sqrt(parseFloat(d.xLocation)*3261.56*parseFloat(d.xLocation)*3261.56+parseFloat(d.yLocation)*3261.56*parseFloat(d.yLocation)*3261.56).toFixed(0),
                         "Nstars": parseFloat(d.NumberOfStars).toFixed(0),
@@ -148,11 +148,11 @@ class Galaxy {
         circ.call(tip);
         circ.on("mouseover", tip.show)
             .on("mouseout", tip.hide);
-//         circ.on("mouseover", function(d) 
+//         circ.on("mouseover", function(d)
 //             {
 //                 tip.show;
 //                 d3.select(this).classed("selected", true);
-//                 
+//
 //             })
 //             .on("mouseout", function(d)
 //             {
@@ -181,10 +181,10 @@ class Galaxy {
         let ColorScale = d3.scaleLinear()
             .domain([d3.min(this.starData, d => +d[selection.symbol]), d3.max(this.starData, d => +d[selection.symbol])])
             .range(["yellow", "red"]);
-            
+
             this.svg.selectAll("circle")
                 .transition().duration(1000)
-                .style("fill", d => { 
+                .style("fill", d => {
                     return ColorScale(+d[selection.symbol]);
                 });
         }

@@ -15,7 +15,6 @@ class ScatterPlot
         let svgBounds = div.node().getBoundingClientRect();
         this.svgWidth = svgBounds.width - this.margin.left - this.margin.right;
         this.svgHeight = this.svgWidth*0.5;
-        console.log(svgBounds)
 
         //Adds svg to the div
         this.svg = div.append("svg")

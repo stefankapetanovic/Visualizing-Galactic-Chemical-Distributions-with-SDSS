@@ -53,7 +53,7 @@ class Galaxy {
         let text = "<h2 class = atomicName> Number of Star in Bin:  " + tooltip_data.Nstars + "</h2>";
         text += "<h2 class = atomicName> Average Temperature:  " + tooltip_data.AverageT + "(K) </h2>";
         text += "<h2 class = atomicName> Radius from the Sun:  " + tooltip_data.rS + "(ly) </h2>";
-        text += "<h2 class = atomicName> Average Chemical Enrichment:  " + tooltip_data.AverageCE + "(dexs) </h2>";
+        text += "<h2 class = atomicName> Avg. Chemical Enrichment:  " + tooltip_data.AverageCE + "(dexs) </h2>";
 
         return text;
     };
@@ -143,8 +143,17 @@ class Galaxy {
 
         //tip for element rectangels
         circ.call(tip);
-        circ.on("mouseover", tip.show)
-            .on("mouseout", tip.hide);
+        let self = this;
+        circ.on("mouseover", function(d)
+            {
+                d3.select(this).classed("selected", true);
+                tip.show(d);
+            })
+            .on("mouseout", function(d)
+            {
+                d3.select(this).classed("selected", false);
+                tip.hide(d);
+            });
 //         circ.on("mouseover", function(d)
 //             {
 //                 tip.show;

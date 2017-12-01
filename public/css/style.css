@@ -73,7 +73,7 @@ circle {
 .selected{
     fill: crimson;
     stroke: #404040;
-    stroke-width:4;
+    stroke-width:2;
     r:25px;
 }
 
@@ -87,11 +87,11 @@ circle {
 
 .d3-tip {
     /*line-height: 5;*/
-    padding-left: 10px;
-    padding-right: 10px;
-    min-width: 400px;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: 20px;
     border-style: groove;
-    background: #FFFFFF;
+    background: #e6e6e6;
     color: rgba(0, 0, 0, 0.8);
     border-radius: 10px;
     pointer-events: none;

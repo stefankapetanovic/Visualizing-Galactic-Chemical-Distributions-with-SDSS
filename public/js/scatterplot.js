@@ -59,7 +59,7 @@ class ScatterPlot
             .range([r, this.svgHeight - ybuffer - r]);
         let cScale = d3.scaleLinear()
             .domain([cmin, cmax])
-            .range(["yellow", "red"])
+            .range(["#a21201", "#0ae4d3"])
 
         //x-axis setup
         let xAxis = d3.axisBottom().scale(xScale).tickFormat(d3.format(".2f"));

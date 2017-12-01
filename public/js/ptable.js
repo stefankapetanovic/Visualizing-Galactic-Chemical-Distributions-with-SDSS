@@ -325,6 +325,20 @@ class PTable {
                 return d.col*rectWidth+rectWidth/2+d.col*padding+padding;
             })
             .text(d => {return d.symbol});
+
+        ///// Labeling
+        this.svg.append("text")
+            .attr("fill", "white")
+            .attr("x", 55)
+            .attr("y", 15)
+            .attr("font-size", 15)
+            .text("Periodic Table:")
+        this.svg.append("text")
+            .attr("fill", "white")
+            .attr("x", 55)
+            .attr("y", 25)
+            .attr("font-size", 10)
+            .text("Select a green bordered element to display chemical distribution.")
 //////////////////////////
 //// PTable Text :End ////
 //////////////////////////

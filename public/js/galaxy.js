@@ -127,7 +127,7 @@ class Galaxy {
             let tip = d3.tip().attr('class', 'd3-tip')
                 .direction('nw')
                 .offset(function() {
-                    return [-275,0];
+                    return [-298,0];
                 })
                 .html((d)=>{
                     // populate data in the following format
@@ -148,7 +148,18 @@ class Galaxy {
         circ.call(tip);
         circ.on("mouseover", tip.show)
             .on("mouseout", tip.hide);
-    
+//         circ.on("mouseover", function(d) 
+//             {
+//                 tip.show;
+//                 d3.select(this).classed("selected", true);
+//                 
+//             })
+//             .on("mouseout", function(d)
+//             {
+//                 d3.select(this).classed("selected", false)
+//                 tip.hide;
+//             });
+
         /////// Text for selected element
         this.svg.append("text")
             .attr("id", "Chemical")
@@ -161,7 +172,6 @@ class Galaxy {
 
     update(selection)
     {
-        console.log(selection)
         // Creates an array for possible selection of elements
         d3.select("#Chemical").text("Chemical Distribution for: "+selection.Name)
         let Columns = this.starData.columns

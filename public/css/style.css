@@ -72,7 +72,7 @@ circle {
 
 .selected{
     fill: crimson;
-    stroke: #404040;;
+    stroke: #404040;
     stroke-width:4;
     r:25px;
 }

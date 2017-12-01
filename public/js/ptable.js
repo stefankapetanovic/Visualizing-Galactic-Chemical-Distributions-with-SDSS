@@ -15,8 +15,8 @@ class PTable {
         //Initializes the svg elements required for pTable chart
         this.margin = {top: 30, right: 20, bottom: 30, left: 50};
         let svgBounds = divTiles.node().getBoundingClientRect();
-        this.svgWidth = 460 //svgBounds.width// - this.margin.left - this.margin.right;
-        this.svgHeight = this.svgWidth*0.7;
+        this.svgWidth = 500 //svgBounds.width// - this.margin.left - this.margin.right;
+        this.svgHeight = this.svgWidth*0.65;
 
         //Adds svg to the div
         this.svg = divTiles.append("svg")
@@ -38,7 +38,7 @@ class PTable {
         text += "<ul>"
         tooltip_data.info.forEach((row)=>{
             //if (row.votecount == "" || row.party == "" || row.nominee == "") {}
-            text += "<li class = " + row.type + ">" + row.entry + ":\t\t" + "</li>"
+            text += "<li class = " + row.type + ">" + row.entry + "\t\t" + "</li>"
         });
         text += "</ul>";
 
@@ -63,8 +63,9 @@ class PTable {
 /////////////////////////////
         //Rectangle sizes and position
         let CurrentPos = 0;
-        let rectWidth = this.svgWidth/(maxColumns+1);
-        let rectHeight = this.svgHeight/(maxRows+1);
+        let padding = 2;
+        let rectWidth = this.svgWidth/(maxColumns+1)-2*padding-1;
+        let rectHeight = this.svgHeight/(maxRows+1)-2*padding-1;
 
     /////////////////// Source of the elements
         //Big Bang Fusion rectangles
@@ -79,12 +80,12 @@ class PTable {
                 return rectHeight*d.BigBangFusion;
             })
             .attr("x", d => {
-                return d.col*rectWidth;
+                return d.col*rectWidth+d.col*padding+padding;
             })
             .attr("y", d => {
                 CurrentPos = +d.CurrentPosition;
                 d.CurrentPosition = CurrentPos + parseFloat(d.BigBangFusion);
-                return d.row*rectHeight+CurrentPos*rectHeight;
+                return d.row*rectHeight+CurrentPos*rectHeight+d.row*padding+padding;
             });
 
         //Cosmic Ray Fission rectangles
@@ -99,12 +100,12 @@ class PTable {
                 return rectHeight*d.CosmicRayFission;
             })
             .attr("x", d => {
-                return d.col*rectWidth;
+                return d.col*rectWidth+d.col*padding+padding;
             })
             .attr("y", d => {
                 CurrentPos = +d.CurrentPosition;
                 d.CurrentPosition = CurrentPos + parseFloat(d.CosmicRayFission);
-                return d.row*rectHeight+CurrentPos*rectHeight;
+                return d.row*rectHeight+CurrentPos*rectHeight+d.row*padding+padding;
             });
 
         //Merging Neutron Stars rectangles
@@ -119,12 +120,12 @@ class PTable {
                 return rectHeight*d.MergingNeutronStars;
             })
             .attr("x", d => {
-                return d.col*rectWidth;
+                return d.col*rectWidth+d.col*padding+padding;
             })
             .attr("y", d => {
                 CurrentPos = +d.CurrentPosition;
                 d.CurrentPosition = CurrentPos + parseFloat(d.MergingNeutronStars);
-                return d.row*rectHeight+CurrentPos*rectHeight;
+                return d.row*rectHeight+CurrentPos*rectHeight+d.row*padding+padding;
             });
 
         //Exploding Massive Stars rectangles
@@ -139,12 +140,12 @@ class PTable {
                 return rectHeight*d.ExplodingMassiveStars;
             })
             .attr("x", d => {
-                return d.col*rectWidth;
+                return d.col*rectWidth+d.col*padding+padding;
             })
             .attr("y", d => {
                 CurrentPos = +d.CurrentPosition;
                 d.CurrentPosition = CurrentPos + parseFloat(d.ExplodingMassiveStars);
-                return d.row*rectHeight+CurrentPos*rectHeight;
+                return d.row*rectHeight+CurrentPos*rectHeight+d.row*padding+padding;
             });
 
         //Dying Low Mass Stars rectangles
@@ -159,12 +160,12 @@ class PTable {
                 return rectHeight*d.DyingLowMassStars;
             })
             .attr("x", d => {
-                return d.col*rectWidth;
+                return d.col*rectWidth+d.col*padding+padding;
             })
             .attr("y", d => {
                 CurrentPos = +d.CurrentPosition;
                 d.CurrentPosition = CurrentPos + parseFloat(d.DyingLowMassStars);
-                return d.row*rectHeight+CurrentPos*rectHeight;
+                return d.row*rectHeight+CurrentPos*rectHeight+d.row*padding+padding;
             });
 
         //Exploding White Dwarfs rectangles
@@ -179,12 +180,12 @@ class PTable {
                 return rectHeight*d.ExplodingWhiteDwarfs;
             })
             .attr("x", d => {
-                return d.col*rectWidth;
+                return d.col*rectWidth+d.col*padding+padding;
             })
             .attr("y", d => {
                 CurrentPos = +d.CurrentPosition;
                 d.CurrentPosition = CurrentPos + parseFloat(d.ExplodingWhiteDwarfs);
-                return d.row*rectHeight+CurrentPos*rectHeight;
+                return d.row*rectHeight+CurrentPos*rectHeight+d.row*padding+padding;
             });
     ///////////////////
 
@@ -200,10 +201,10 @@ class PTable {
         rect.attr("width", rectWidth)
             .attr("height", rectHeight)
             .attr("x", d => {
-                return d.col*rectWidth;
+                return d.col*rectWidth+d.col*padding+padding;
             })
             .attr("y", d => {
-                return d.row*rectHeight;
+                return d.row*rectHeight+d.row*padding+padding;
             })
             //.attr("fill", "white")
             .classed("rect", true)
@@ -218,7 +219,7 @@ class PTable {
                     return "#eee"
                 }
             })
-            .style("stroke-width", "3")
+            .style("stroke-width", padding)
             .attr("fill", d => {
                 if (d.CurrentPosition == 0) {
                     return "grey";
@@ -240,10 +241,13 @@ class PTable {
         let self = this;
         rect.on("click", function(d) 
             {
-                self.GPlot.update(d);
-                // Run function to update plot in the future
-                d3.selectAll("rect").classed("selected", false); //Un-selects previously selected tile
-                d3.select(this).classed("selected", true);
+                if (selectableElements.indexOf(d.symbol) > -1)
+                {
+                    self.GPlot.update(d);
+                    // Run function to update plot in the future
+                    d3.selectAll("rect").classed("selected", false); //Un-selects previously selected tile
+                    d3.select(this).classed("selected", true);
+                }
             });
 ///////////////////////////
 //// PTable Tiles :End ////
@@ -305,20 +309,20 @@ class PTable {
             .attr("class", "atomicNumber")
             .attr("font-size", N_fontSize)
             .attr("x", d => {
-                return d.col*rectWidth+5.0;
+                return d.col*rectWidth+5.0+d.col*padding+padding;
             })
             .attr("y", d => {
-                return d.row*rectHeight+N_fontSize+2.5;
+                return d.row*rectHeight+N_fontSize+2.5+d.row*padding+padding;
             })
             .attr("pointer-events", "none")
             .append("tspan")
             .attr("class", "atomicSymbol")
             .attr("font-size", S_fontSize)
             .attr("y", d => {
-                return d.row*rectHeight+rectHeight/2+S_fontSize/2;
+                return d.row*rectHeight+rectHeight/2+S_fontSize/2+d.row*padding+padding;
             })
             .attr("x", d => {
-                return d.col*rectWidth+rectWidth/2;
+                return d.col*rectWidth+rectWidth/2+d.col*padding+padding;
             })
             .text(d => {return d.symbol});
 //////////////////////////

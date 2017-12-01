@@ -15,21 +15,6 @@ body, h1,h2,h3,h4,h5,h6 {
     stroke-width: 0.1px;
 }
 
-.galaxyTile {
-    margin-top: 0px;
-    margin-right: 4%;
-}
-
-.PtableTile {
-    margin-top: 30px;
-    margin-left: 1.5%;
-}
-
-.scatterTile {
-    width: 480px;
-    margin-left: 1.5%
-}
-
 circle {
     fill: steelblue;
 }
@@ -42,20 +27,15 @@ circle {
 
 .content {
     display: inline-block;
-    width: 50%;
+    width: 45%;
 }
 
-/*.tile {
-    stroke: #eee;
-    stroke-width: 5;
+.galaxy {
+    display: inline-block;
+    width: 55%;
+    float: right;
 }
 
-.tileSelection {
-    stroke: green;
-    stroke-width: 5;
-}*/
-
-/* Ptable classes */
 .atomicNumber{
     text-anchor:start;
     fill: #000;

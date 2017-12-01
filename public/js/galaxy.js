@@ -7,19 +7,19 @@ class Galaxy {
         this.starData = starData;
 
         //Selects the div
-        let div = d3.select("#GPlot").classed("content", true);
+        let div = d3.select("#GPlot").classed("galaxy", true);
 
         //Initializes the svg elements required for pTable chart
-        this.margin = {top: 30, right: 20, bottom: 30, left: 50};
+        this.margin = {top: 15, right: 20, bottom: 25, left: 20};
         let svgBounds = div.node().getBoundingClientRect();
-        this.svgWidth = 600 //svgBounds.width - this.margin.left - this.margin.right;
+        this.svgWidth = svgBounds.width - this.margin.left - this.margin.right;
         this.svgHeight = this.svgWidth;
 
         //Adds svg to the div
         this.svg = div.append("svg")
             .attr("width", this.svgWidth)
-            .attr("height", this.svgHeight)
-            .attr("transform", "translate(0, 0)");
+            .attr("height", this.svgHeight+this.margin.bottom)
+            .attr("transform", "translate(0, "+this.margin.top+")");
 
         ///////// Background: Start //////////////
         //Appeds bacground to svg future
@@ -80,9 +80,6 @@ class Galaxy {
         let ColorScale = d3.scaleLinear()
             .domain([d3.min(this.starData, d => +d.C), d3.max(this.starData, d => +d.C)])
             .range(["yellow", "red"]);
-        //let RgalaxyScale = d3.scale.log()
-        //    .domain([-7.5, 7.5])
-        //    .range([-this.svgHeight/4.6, this.svgHeight/4.6]);
 
         //Creates circles for cluster data
         let circ = this.svg.selectAll("circle")
@@ -161,11 +158,12 @@ class Galaxy {
 //             });
 
         /////// Text for selected element
+        let fontSize = this.svgWidth*0.05
         this.svg.append("text")
             .attr("id", "Chemical")
-            .attr("font-size", 25)
+            .attr("font-size", fontSize)
             .attr("x", 0)
-            .attr("y", 25)
+            .attr("y", this.svgHeight+fontSize/2)
             .attr("fill", "white")
             .text("Chemical Distribution for: Carbon")
     };

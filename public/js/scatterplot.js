@@ -8,13 +8,14 @@ class ScatterPlot
         this.starData = starData;
 
         //Selects the div
-        let div = d3.select("#scatterPlt")//.classed("content", true);
+        let div = d3.select("#scatterPlt").classed("content", true);
 
         //Initializes the svg elements required for pTable chart
-        this.margin = {top: 30, right: 20, bottom: 30, left: 50};
+        this.margin = {top: 30, right: 15, bottom: 30, left: 25};
         let svgBounds = div.node().getBoundingClientRect();
-        this.svgWidth = 480 //svgBounds.width// - this.margin.left - this.margin.right;
-        this.svgHeight = 270;
+        this.svgWidth = svgBounds.width - this.margin.left - this.margin.right;
+        this.svgHeight = this.svgWidth*0.5;
+        console.log(svgBounds)
 
         //Adds svg to the div
         this.svg = div.append("svg")

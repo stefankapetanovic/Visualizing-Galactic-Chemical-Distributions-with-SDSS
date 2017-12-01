@@ -10,19 +10,19 @@ class PTable {
         this.starData = starData;
 
         //Selects the tiles
-        let divTiles = d3.select("#ptable")//.classed("content", true);
+        let divTiles = d3.select("#ptable").classed("content", true);
 
         //Initializes the svg elements required for pTable chart
-        this.margin = {top: 30, right: 20, bottom: 30, left: 50};
+        this.margin = {top: 40, right: 20, bottom: 30, left: 50};
         let svgBounds = divTiles.node().getBoundingClientRect();
-        this.svgWidth = 500 //svgBounds.width// - this.margin.left - this.margin.right;
+        this.svgWidth = svgBounds.width// - this.margin.left - this.margin.right;
         this.svgHeight = this.svgWidth*0.65;
 
         //Adds svg to the div
         this.svg = divTiles.append("svg")
             .attr("width", this.svgWidth)
-            .attr("height", this.svgHeight)
-            .attr("transform", "translate(0, 0)");
+            .attr("height", this.svgHeight+this.margin.bottom)
+            .attr("transform", "translate(0, "+this.margin.top+")");
     };
 
 ///////////////////// Tool Tip Function
@@ -329,16 +329,16 @@ class PTable {
         ///// Labeling
         this.svg.append("text")
             .attr("fill", "white")
-            .attr("x", 55)
-            .attr("y", 15)
-            .attr("font-size", 15)
+            .attr("x", this.svgWidth/10)
+            .attr("y", this.svgWidth/38)
+            .attr("font-size", this.svgWidth/36)
             .text("Periodic Table:")
         this.svg.append("text")
             .attr("fill", "white")
-            .attr("x", 55)
-            .attr("y", 25)
-            .attr("font-size", 10)
-            .text("Select a green bordered element to display chemical distribution.")
+            .attr("x", this.svgWidth/10)
+            .attr("y", this.svgWidth/38+this.svgWidth/46)
+            .attr("font-size", this.svgWidth/45)
+            .text("Click a green bordered element to display distribution.")
 //////////////////////////
 //// PTable Text :End ////
 //////////////////////////

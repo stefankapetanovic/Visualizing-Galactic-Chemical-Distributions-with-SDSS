@@ -32,15 +32,18 @@
 
 
 <div class="w3-padding-large" id="main">
-    <div id = "galaxyPlt" class = "view w3-display-right galaxyTile">
+
+    <div id = "galaxyPlt" class = "view">
         <div id="GPlot" class = "view"></div>
     </div>
-    <div id = "ptable" class = "PtableTile">
+    
+    <div id = "ptable" class = "view">
         <div id = "tiles" class = "view"></div>
     </div>
-    <div id="scatterPlt" class = "scatterTile">
+    
+    <div id="scatterPlt">
         <div class="w3-third" id="Xselector">
-            <label>X-Axis:</label>
+            <label>X-Axis:<br /></label>
             <select class="w3-threequarter" id="xselect" onchange="chooseSelection()">
                 <option value="TEFF">Teff</option>
                 <option value="LOGG">Log(g)</option>
@@ -72,7 +75,7 @@
             </select>
         </div>
         <div class="w3-third" id="Yselector">
-            <label>Y-Axis:</label>
+            <label>Y-Axis:<br /></label>
             <select class="w3-threequarter" id="yselect" onchange="chooseSelection()">
                 <option value="TEFF">Teff</option>
                 <option value="LOGG">Log(g)</option>
@@ -104,7 +107,7 @@
             </select>
         </div>
         <div class="w3-third" id="Cselector">
-            <label>Color:</label>
+            <label>Color:<br /></label>
             <select class="w3-threequarter"" id="cselect" onchange="chooseSelection()">
                 <option value="TEFF">Teff</option>
                 <option value="LOGG">Log(g)</option>

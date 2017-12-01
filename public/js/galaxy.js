@@ -12,7 +12,7 @@ class Galaxy {
         //Initializes the svg elements required for pTable chart
         this.margin = {top: 30, right: 20, bottom: 30, left: 50};
         let svgBounds = div.node().getBoundingClientRect();
-        this.svgWidth = 550 //svgBounds.width - this.margin.left - this.margin.right;
+        this.svgWidth = 600 //svgBounds.width - this.margin.left - this.margin.right;
         this.svgHeight = this.svgWidth;
 
         //Adds svg to the div
@@ -148,11 +148,22 @@ class Galaxy {
         circ.call(tip);
         circ.on("mouseover", tip.show)
             .on("mouseout", tip.hide);
+    
+        /////// Text for selected element
+        this.svg.append("text")
+            .attr("id", "Chemical")
+            .attr("font-size", 25)
+            .attr("x", 0)
+            .attr("y", 25)
+            .attr("fill", "white")
+            .text("Chemical Distribution for: Carbon")
     };
 
     update(selection)
     {
+        console.log(selection)
         // Creates an array for possible selection of elements
+        d3.select("#Chemical").text("Chemical Distribution for: "+selection.Name)
         let Columns = this.starData.columns
         if (Columns.indexOf(selection.symbol) > -1)
         {

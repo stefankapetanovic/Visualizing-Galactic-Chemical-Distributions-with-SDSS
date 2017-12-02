@@ -18,7 +18,7 @@ d3-tip
 d3
 
 
--Our "data" folder includes all our data sources which are required to run the visualizations. Below are the specific files requierd and used in our implementation. It also has one jpg of the milky way galaxy.
+-Our "data" folder includes all our data sources which are required to run the visualizations. Below are the specific files required and used in our implementation. It also has one jpg of the milky way galaxy.
 The data folder includes the following:
 ApogeeToCSV.py
 ApogeeToCSV_Old.py

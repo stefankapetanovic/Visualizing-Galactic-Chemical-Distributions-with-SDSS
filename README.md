@@ -30,7 +30,7 @@ ptable.csv
 Full Data links:
 https://github.com/andrejewski/periodic-table
 https://data.sdss.org/sas/dr14/apogee/spectro/redux/r8/stars/l31c/l31c.2/allStar-l31c.2.fits
-https://data.sdss.org/datamodel/files/APOGEE_REDUX/APRED_VERS/APSTAR_VERS/ASPCAP_VERS/RESULTS_VERS/allStar.html https://www.dropbox.com/s/jn9e5waryvr2f6f/apogee_distances-DR14_2017-04-26.fits?dl=0
+https://data.sdss.org/datamodel/files/APOGEE_REDUX/APRED_VERS/APSTAR_VERS/ASPCAP_VERS/RESULTS_VERS/allStar.html
 
 - Our "Notes" folder includes all of the static images we used throughout the project documentation. A full overview of the imagery is detailed in the process book .pdf file. These images were crucial to our data processing and they allowed us to understand how we needed to display our data to be aesthetic and informational.
 The Notes folder includes the following:
